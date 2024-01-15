@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/psi?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root1234
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 5
+      max-active: 20
+      max-wait: 60000
+      min-idle: 1
+      # 从pool取连接时是否执行validation-query指定的sql来校验连接
+      test-on-borrow: false
+      test-on-return: false
+      # 单位:ms,空闲连接数>min-idle&&空闲时间>min-evictable-idle-time-millis
+      min-evictable-idle-time-millis: 1800000
+      # 单位:ms,空闲时间>max-evictable-idle-time-millis
+      max-evictable-idle-time-millis: 25200000
+      # 俩作用: 1.destroy线程运行周期  2.test-while-idle使用,检测空闲时间是否
+      # > time-between-eviction-runs-millis,如果大于validation-query指定的sql来校验连接
+      # 单位:ms
+      time-between-eviction-runs-millis: 60000
+      test-while-idle: true
+      validation-query: select 1
+
+#mybatis
+mybatis-plus:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath*:mybatis/mapper/*Mapper.xml
+
+# 拦截器配置
+auth:
+  ignoreHandlers:
+    - /user/login
+# 服务端端口
+server:
+  port: 8080

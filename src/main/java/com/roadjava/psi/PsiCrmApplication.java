@@ -1,4 +1,4 @@
-package com.roadjava.psi_crm;
+package com.roadjava.psi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

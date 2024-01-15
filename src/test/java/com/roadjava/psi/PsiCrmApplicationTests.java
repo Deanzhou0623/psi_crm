@@ -1,4 +1,4 @@
-package com.roadjava.psi_crm;
+package com.roadjava.psi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
