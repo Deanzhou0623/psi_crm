@@ -10,6 +10,12 @@ date:1.14
    4. 制定开发计划 
       1. day 02 - 不涉及到业务到部分 ：
           登入所涉及的login拦截器(jwt)/统一异常处理/utils/configs/listener  
-2. day 02 
+2. day 02
+   1. ex 统一异常处理器
+   2. 登入拦截器
+   3. utils
+   4. configs
+   5. listener
+3. day 03
 
 
