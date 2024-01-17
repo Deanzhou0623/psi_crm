@@ -31,5 +31,5 @@ public class MybatisConfiguration {
         interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
         return interceptor;
     }
-
+    //测试合并
 }
