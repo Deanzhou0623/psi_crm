@@ -21,10 +21,7 @@ import java.util.List;
 import java.util.Properties;
 
 @Configuration
-public class MybatisConfiguration {     
-    @Resource
-    private List<SqlSessionFactory> sqlSessionFactoryList;
-
+public class MybatisConfiguration {
     /**
      * 配置单表分页: mybatis plus的拦截器,不然selectPage不会加limit
      */
@@ -33,23 +30,6 @@ public class MybatisConfiguration {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
         interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
         return interceptor;
-    }
-
-    /**
-     * 配置pageHelper分页:除了单表,也适用于一对一的多表join
-     */
-    @PostConstruct
-    public void init() {
-        PageInterceptor pageInterceptor = new PageInterceptor();
-        Properties properties = new Properties();
-        properties.put("helperDialect","mysql");
-        properties.put("reasonable","true");
-        properties.put("pageSizeZero","true");
-        properties.put("params","pageNum=pageNow;count=executeCount");
-        pageInterceptor.setProperties(properties);
-        for (SqlSessionFactory sqlSessionFactory : sqlSessionFactoryList) {
-            sqlSessionFactory.getConfiguration().addInterceptor(pageInterceptor);
-        }
     }
 
 }
