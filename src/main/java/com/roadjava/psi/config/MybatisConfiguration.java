@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.github.pagehelper.PageInterceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -21,6 +22,7 @@ import java.util.List;
 import java.util.Properties;
 
 @Configuration
+@MapperScan("com.roadjava.psi.mapper")
 public class MybatisConfiguration {
     /**
      * 配置单表分页: mybatis plus的拦截器,不然selectPage不会加limit

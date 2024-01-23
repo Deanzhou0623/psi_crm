@@ -17,5 +17,14 @@ date:1.14
    4. configs
    5. listener
 3. day 03
+   1. 员工管理 user 90%
+      1. crud (未完成 图标加载)
+      2. 权限控制
+   2. 供应商管理 supplier
+      1. crud
+   3. 商品管理 goods  (完成)
+      1. crud
+      2. 反正图表用于前端的统计
+4. day 04
 
 
