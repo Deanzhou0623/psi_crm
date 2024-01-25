@@ -5,8 +5,11 @@ package com.roadjava.psi.service.impl;/*
  *@Date:2024-01-22 22:17
  */
 
-import com.auth0.jwt.JWT;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.github.pagehelper.Page;
 import com.roadjava.psi.bean.entity.UserDO;
 import com.roadjava.psi.bean.enums.RoleEnum;
 import com.roadjava.psi.bean.request.user.LoginReq;
@@ -27,6 +30,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -113,6 +118,29 @@ public class UserServiceImpl implements UserService {
     * */
     @Override
     public ResultVO<TableResult<UserVO>> loadTable(UserSearchReq req) {
-        return null;
+        IPage<UserDO> page = (IPage<UserDO>) new Page(req.getPageNow(),req.getPageSize());
+        LambdaQueryWrapper<UserDO> queryWrapper = new LambdaQueryWrapper<>();
+        //根据名字查数据
+        if (StringUtils.isNotBlank(req.getUserName())){
+              queryWrapper.like(UserDO::getUserName,req.getUserName());
+        }
+        //根据id降序
+        queryWrapper.orderByDesc(UserDO::getId);
+        //userMapper 查询数据
+        IPage<UserDO> pageResult = userMapper.selectPage(page, queryWrapper);
+        //得到条数
+        List<UserDO> records = pageResult.getRecords();
+        if (CollectionUtils.isEmpty(records)){
+            return ResultVO.buildEmptySuccess();
+        }
+        //通过stream 流将对象转化成vo对象
+        List<UserVO> voList=records.stream()
+                .map(userDO -> userConvert.entity2vo(userDO))
+                .collect(Collectors.toList());
+        //设置表格结果并返回
+        TableResult<UserVO> tableResult = new TableResult<>();
+        tableResult.setTotal(pageResult.getTotal());
+        tableResult.setRows(voList);
+        return ResultVO.buildSuccess(tableResult);
     }
 }
