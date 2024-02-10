@@ -17,4 +17,6 @@ import java.util.List;
 
 public interface PurchaseMapper extends BaseMapper<PurchaseDO> {
     List<PurchaseVO> selectPurchaseList(PurchaseSearchReq req);
+
+    PurchaseVO selectWithDetail(PurchaseDO purchaseQuery);
 }

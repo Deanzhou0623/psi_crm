@@ -1,32 +1,24 @@
-package com.roadjava.psi.bean.vo;/*
- *ClassName:PurchaseDetailVO
- *Description: TODO
+package com.roadjava.psi.bean.request.purchase;/*
+ *ClassName:PurchaseDetailAddReq
+ *Description: 进货详细信息
  *@Author:deanzhou
- *@Date:2024-01-15 21:42
- *@Param: $ $
- *@Param: $ $
- *@Return: $
+ *@Date:2024-01-27 21:25
  */
 
 import lombok.Data;
 
 import java.math.BigDecimal;
+
 @Data
-public class PurchaseDetailVO {
+public class PurchaseDetailAddReq {
     /**
-     * 系统编号
-     */
-    private Long id;
-    /**
-     * 进货表主键
+     * 进货批次号
      */
     private String purchaseNo;
     /**
      * 商品表的主键
      */
     private Long goodsId;
-    private String goodsName;
-    private String unit;
     /**
      * 买入价格
      */
@@ -39,8 +31,5 @@ public class PurchaseDetailVO {
      * 供应商表的主键
      */
     private Long supplierId;
-    /**
-     * 供应商名
-     */
-    private String supplierName;
+
 }

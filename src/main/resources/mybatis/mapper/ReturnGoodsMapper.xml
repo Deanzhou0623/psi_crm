@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.roadjava.psi.mapper.ReturnGoodsMapper">
+
+    <select id="selectRetList" resultType="returnGoodsVO">
+        select
+        a.*,
+        b.user_name operatorName
+        from return_goods a
+        left join user b on a.operator_id = b.id
+        <where>
+            <if test='fuzzyRetNo != null and fuzzyRetNo !=""'>
+                 a.ret_no like concat('%',#{fuzzyRetNo},'%')
+            </if>
+            <if test='status != null'>
+                and a.status=#{status}
+            </if>
+        </where>
+        order by a.id desc
+    </select>
+</mapper>

@@ -1,5 +1,5 @@
 project： psi-crm(进存销crm)
-author: deanzhou
+author: deanZhou
 date:1.14 
 
 
@@ -25,11 +25,17 @@ date:1.14
    3. 商品管理 goods  (完成)
       1. crud
       2. 反正图表用于前端的统计
-4. day 04 -进退货
+4. day 04 -进退货  (完成)
    1. 进货管理
       1. crud
    2. 退货管理
       1. query/delete
-5. day 05
+5. day 05 - 退款和销售
+   1. sales
+      1. crud
+      2. refund
+   2. refund 
+      1. 查询
+6. 
 
 

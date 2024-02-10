@@ -1,8 +1,8 @@
 package com.roadjava.psi.bean.entity;/*
- *ClassName:PurchaseDO
- *Description: purchase do 进货信息
+ *ClassName:ReturnGoodsDO
+ *Description: 退货信息
  *@Author:deanzhou
- *@Date:2024-01-15 21:36
+ *@Date:2024-01-27 20:24
  */
 
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -11,31 +11,33 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.util.Date;
- /*
- * 进货信息
- * */
+
 @Data
-@TableName("purchase")
-public class PurchaseDO {
+@TableName("return_goods")
+public class ReturnGoodsDO {
     /**
      * 系统编号
      */
     @TableId(type = IdType.AUTO)
     private Long id;
     /**
-     * 进货批次号
+     * 进货号
      */
     private String purchaseNo;
     /**
-     * 经办人id
+     * 退货批次号
+     */
+    private String retNo;
+    /**
+     * 经办人
      */
     private Long operatorId;
     /**
-     * 0:待审核 1:审核通过 2 审核拒绝
+     * 0:待审核 1:审核通过
      */
     private Integer status;
     /**
-     * 买入日期
+     * 退货日期
      */
-    private Date purchaseDate;
+    private Date returnDate;
 }

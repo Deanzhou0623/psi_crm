@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.roadjava.psi.mapper.PurchaseMapper">
+    
+    <resultMap id="purchaseVOMap" type="PurchaseVO" autoMapping="true">
+        <id property="id" column="id"/>
+        <collection property="detailList" resultMap="purchaseDetailVOMap"
+                    ofType="PurchaseDetailVO"/>
+    </resultMap>
+
+    <resultMap id="purchaseDetailVOMap" type="PurchaseDetailVO" autoMapping="true">
+        <id property="id" column="detailId"/>
+    </resultMap>
+
+    <sql id="columnComm">
+       select
+       a.* ,
+       b.user_name  operatorName,
+        <!--1对多的字段-->
+        c.id detailId,
+        c.goods_id,
+        c.buy_price,
+        c.num,
+        c.supplier_id,
+        d.name as goodsName,
+        d.unit,
+        e.name as supplierName
+    </sql>
+    <!--purchase 表 关联user，purchase_detail, goods, supplier-->
+    <sql id="additionalTable">
+        left join user b on a.operator_id = b.id
+        <!--1对多的表-->
+        left join purchase_detail c on a.id = c.purchase_id
+        left join goods d on c.goods_id = d.id
+        left join supplier e on c.supplier_id = e.id
+    </sql>
+    <select id="selectPurchaseList" resultMap="purchaseVOMap">
+        <include refid="columnComm"/>
+        from (
+        select a.* from purchase a
+        <where>
+            <if test='purchaseNo != null and purchaseNo !=""'>
+                a.purchase_no like concat('%',#{purchaseNo},'%')
+            </if>
+            <if test='status != null'>
+                and a.status=#{status}
+            </if>
+        </where>
+        order by a.id desc
+        limit #{start},#{pageSize}
+        ) a
+        <include refid="additionalTable"/>
+    </select>
+    <select id="selectWithDetail" resultMap="purchaseVOMap">
+        <include refid="columnComm"/>
+        from (
+        select a.* from purchase a
+        <where>
+            <if test='purchaseNo !=null and purchaseNo !="" '>
+                purchase_no = #{purchaseNo}
+            </if>
+        </where>
+        ) a
+        <include refid="additionalTable"/>
+    </select>
+</mapper>

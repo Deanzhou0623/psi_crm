@@ -1,8 +1,8 @@
 package com.roadjava.psi.bean.vo;/*
- *ClassName:PurchaseVO
- *Description: 进货信息
+ *ClassName:ReturnGoodsVO
+ *Description: return good vo 
  *@Author:deanzhou
- *@Date:2024-01-15 21:40
+ *@Date:2024-01-28 15:54
  */
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -12,26 +12,26 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-public class PurchaseVO {
-    /**
-     * 系统编号
-     */
+public class ReturnGoodsVO {
     private Long id;
     /**
      * 进货批次号
      */
     private String purchaseNo;
-
     /**
-     * 经办人id
+     * 退货号
+     */
+    private String retNo;
+    /**
+     * 经办人
      */
     private Long operatorId;
     /**
-     * 操作人姓名
+     * 经办人姓名
      */
     private String operatorName;
     /**
-     * @see com.roadjava.psi.bean.enums.PurchaseStatusEnum
+     * @see com.roadjava.psi.bean.enums.RetStatusEnum
      */
     private Integer status;
     /**
@@ -39,12 +39,9 @@ public class PurchaseVO {
      */
     private String statusDesc;
     /**
-     * 买入日期
+     * 退货日期
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    private Date purchaseDate;
-    /**
-     * 进货明细列表
-     */
-    private List<PurchaseDetailVO> detailList;
+    private Date returnDate;
+    private List<ReturnGoodsDetailVO> detailList;
 }
