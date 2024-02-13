@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.roadjava.psi.mapper.RefundMapper">
+
+    <select id="selectRefundList" resultType="RefundVO">
+        select
+        a.*
+        from refund a
+        <where>
+            <if test='fuzzyRefundNo != null and fuzzyRefundNo != ""'>
+                a.refund_no like concat('%',#{fuzzyRefundNo},'%')
+            </if>
+        </where>
+        order by a.id desc
+    </select>
+</mapper>

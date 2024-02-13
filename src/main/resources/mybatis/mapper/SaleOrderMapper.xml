@@ -1,0 +1,21 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.roadjava.psi.mapper.SaleOrderMapper">
+
+    <select id="selectOrderList" resultType="SaleOrderVO">
+        select
+        a.*
+        from sale_order a
+        <where>
+            <if test='orderNo != null and orderNo !=""'>
+                a.order_no = #{orderNo}
+            </if>
+            <if test='fuzzyOrderNo != null and fuzzyOrderNo !=""'>
+                and a.order_no like concat('%',#{fuzzyOrderNo},'%')
+            </if>
+        </where>
+        order by a.id desc
+    </select>
+
+</mapper>

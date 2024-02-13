@@ -43,7 +43,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins("*")
                 .allowedHeaders("*")
-                .allowCredentials(false)
+                .allowCredentials(true)
                 // 请求方式
                 .allowedMethods("*")
                 .maxAge(3600);
