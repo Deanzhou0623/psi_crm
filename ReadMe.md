@@ -30,7 +30,7 @@ date:1.14
       1. crud
    2. 退货管理
       1. query/delete
-5. day 05 - 退款和销售
+5. day 05 - 退款和销售  day05 day06 合并到一起
    1. sales
       1. crud
       2. refund
